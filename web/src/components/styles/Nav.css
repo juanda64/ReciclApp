@@ -1,0 +1,7 @@
+.item {
+    margin: 5px;
+    padding: 10px !important;
+    background-color: rgba(23, 109, 1, 0.295) !important;
+    border-radius: 10px !important;
+    color: rgb(255, 255, 255) !important;
+}
