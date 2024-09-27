@@ -1,30 +1,75 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Nav from "./Nav";
-import Seccion from "./SeccionItem";
 import './styles/Home.css';
-import icono from './img/iconoRe.png';
+import Inicio from "./SeccionItem";
+import Aliados from "./SeccionAliados";
 
 const items = [
-  { item: 'Inicio' },
-  { item: 'Aliados' },
-  { item: 'Reciclar' },
-  { item: 'Progresos' }
+  { item: 'Inicio', target: '#inicio' },
+  { item: 'Aliados', target: '#aliados' },
+  { item: 'Sobre Nosotros', target: '#nosotros' },
+  { item: 'Nuestra App', target: '#app' },
 ];
 
-function Home() {
+const itemsEnd = [
+  { item: 'Iniciar sesión' },
+  { item: 'Registrarse' }
+];
 
+const aliadosList =[
+  {aliado: 'Aliado 1', img: './img/iconoRe.png'},
+]
+
+function Home() {
+  const [activeItem, setActiveItem] = useState('');
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = items.map(item => document.querySelector(item.target));
+      const scrollPosition = window.pageYOffset;
+
+      sections.forEach((section, index) => {
+        if (section.offsetTop <= scrollPosition && section.offsetTop + section.offsetHeight > scrollPosition) {
+          setActiveItem(items[index].target.substring(1)); // Asegúrate de usar items[index] aquí
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <>
-      <nav class='backg'>
-        <img src={icono} className="rounded float-start imgcustom" alt="Icono" />
-        <Nav listaNav={items} />
+      <nav className='backg sticky-nav'>
+        <Nav listaNav={items} listEnd={itemsEnd} activeItem={activeItem} />
       </nav>
-      <br />
-      <Seccion />
 
+      <div id="inicio" className="seccion">
+        
+        <Inicio />
+      </div>
+
+      <div id="aliados" className="seccion">
+        <h2>Nuestros Aliados</h2>
+        <Aliados />
+      </div>
+
+      <div id="nosotros" className="seccion">
+        <h2>Sobre Nosotros</h2>
+        <p>Visión, misión.</p>
+      </div>
+
+      <div id="app" className="seccion">
+        <h2>Nuestra Aplicación</h2>
+        <p>Link de descarga de App Android e iOS.</p>
+      </div>
+
+      <div id="flutter" className="seccion">
+        <h2> Footer</h2>
+        <p>Descripción Reciclapp.</p>
+      </div>
     </>
-
   );
 }
 

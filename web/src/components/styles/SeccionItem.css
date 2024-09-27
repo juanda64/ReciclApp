@@ -1,11 +1,15 @@
-.imgcustom{
-    width:50px;
-    height: 50px;
+.carousel-item img {
+    height: 70%; /* Mantén la altura fija o ajusta según lo que necesites */
+    width: 100%; /* Ocupa el 100% del ancho disponible */
+     object-fit:contain; /*Mantén la proporción de la imagen */
 }
 
-.carousel-item img {
-    height: 500px; /* Limita la altura de la imagen al 100% del alto de la pantalla */
-    width: 400px; /* Se asegura de que ocupe el 100% del ancho del contenedor */
-    object-fit: cover;
-     /* Ajusta la imagen para que cubra el contenedor sin perder proporción */
-  }
+@media (max-width: 768px) {
+    .carousel-item img {
+        height: 300px; /* Ajusta la altura para pantallas más pequeñas */
+    }
+}
+
+.imgCarousel{
+    background-color: transparent !important;
+}
