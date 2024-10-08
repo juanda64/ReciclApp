@@ -3,6 +3,7 @@ import Nav from "./Nav";
 import './styles/Home.css';
 import Inicio from "./SeccionItem";
 import Aliados from "./SeccionAliados";
+import SeccionNosotros from "./SeccionNosotros";
 
 const items = [
   { item: 'Inicio', target: '#inicio' },
@@ -16,9 +17,12 @@ const itemsEnd = [
   { item: 'Registrarse' }
 ];
 
-const aliadosList =[
-  {aliado: 'Aliado 1', img: './img/iconoRe.png'},
-]
+const aliadosList = [
+  { aliado: 'https://lavanderiasuavite.com/empresa-reciclaje-en-bogota-colombia/images/Logo-Arbol-Verde.png' },
+  { aliado: 'https://lh5.googleusercontent.com/proxy/JpvIMy1kTtt5NTMVRCvSJJYHshmRAERuHEXicqWdezINxG-Zlgw0cJrA1io5ZqGMbcar05DXvuAmoD_oadjboOwv41d2w61BbAqpm9ximX6oZkWwN9vIsZ_oBatJSHMECSj3KeMKRKVsUoztxriFNOjem73AXA' },
+  { aliado: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSk1MQAzYVRK7QriJ5cOi_-zqu079nfzcXedA&s' },
+  { aliado: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4w3t5TCUQ8hcCedZgULJETpdtqjBgJ52EHQ&s' },
+];
 
 function Home() {
   const [activeItem, setActiveItem] = useState('');
@@ -30,7 +34,7 @@ function Home() {
 
       sections.forEach((section, index) => {
         if (section.offsetTop <= scrollPosition && section.offsetTop + section.offsetHeight > scrollPosition) {
-          setActiveItem(items[index].target.substring(1)); // Asegúrate de usar items[index] aquí
+          setActiveItem(items[index].target.substring(1));
         }
       });
     };
@@ -44,31 +48,31 @@ function Home() {
       <nav className='backg sticky-nav'>
         <Nav listaNav={items} listEnd={itemsEnd} activeItem={activeItem} />
       </nav>
+      <body>
+        <div id="inicio" className="seccion">
+          <Inicio />
+        </div>
 
-      <div id="inicio" className="seccion">
-        
-        <Inicio />
-      </div>
+        <div id="aliados" className="seccion">
+          <Aliados aliadosImg={aliadosList.map(item => item.aliado)} />
+        </div>
 
-      <div id="aliados" className="seccion">
-        <h2>Nuestros Aliados</h2>
-        <Aliados />
-      </div>
+        <div id="nosotros" className="seccion">
+          <SeccionNosotros />
+        </div>
 
-      <div id="nosotros" className="seccion">
-        <h2>Sobre Nosotros</h2>
-        <p>Visión, misión.</p>
-      </div>
+        <div id="app" className="seccion">
+          <h2>Nuestra Aplicación</h2>
+          <p>Link de descarga de App Android e iOS.</p>
+        </div>
 
-      <div id="app" className="seccion">
-        <h2>Nuestra Aplicación</h2>
-        <p>Link de descarga de App Android e iOS.</p>
-      </div>
+        <div id="flutter" className="seccion">
+          <h2>Footer</h2>
+          <p>Descripción Reciclapp.</p>
+        </div>
+      </body>
 
-      <div id="flutter" className="seccion">
-        <h2> Footer</h2>
-        <p>Descripción Reciclapp.</p>
-      </div>
+
     </>
   );
 }

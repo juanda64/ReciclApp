@@ -1,67 +1,24 @@
 import React from "react";
 import './styles/SeccionAliados.css';
-import icono from './img/iconoRe.png';
+import icono from './img/iconoRe.png';  // Icono por defecto si alguna imagen falla
 
 const clasImg = "img-fluid";
 
-function SeccionAliados() {
-
+function SeccionAliados({ aliadosImg }) {  
     return (
-
-        <div class="container">
-            <div class="row g-7 ">
-                <div className="card col cardCustom" style={{ width: '18rem' }}>
-                    <img src={icono} className={clasImg} alt="..." />
-                    <div className="card-body">
-                        <p className="card-text">Aliado 1</p>
+        <div className="container">
+            <h2 className="display-2">Nuestros Aliados</h2>
+            <div className="card-grid">
+                {aliadosImg.map((imgSrc, index) => (
+                    <div key={index} className="card cardCustom">
+                        <img 
+                            src={imgSrc} 
+                            className={clasImg} 
+                            alt={`Aliado ${index + 1}`} 
+                            onError={(e) => { e.target.src = icono; }} // Si la imagen no carga, muestra un icono por defecto
+                        />
                     </div>
-                </div>
-                <div className="card col cardCustom" style={{ width: '18rem' }}>
-                    <img src={icono} className={clasImg} alt="..." />
-                    <div className="card-body">
-                        <p className="card-text">Aliado 2</p>
-                    </div>
-                </div>
-                <div className="card col cardCustom" style={{ width: '18rem' }}>
-                    <img src={icono} className={clasImg} alt="..." />
-                    <div className="card-body">
-                        <p className="card-text">Aliado 3</p>
-                    </div>
-                </div>
-
-                <div className="card col cardCustom" style={{ width: '18rem' }}>
-                    <img src={icono} className={clasImg} alt="..." />
-                    <div className="card-body">
-                        <p className="card-text">Aliado 4</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row g-7">
-                <div className="card col cardCustom" style={{ width: '18rem' }}>
-                    <img src={icono} className={clasImg} alt="..." />
-                    <div className="card-body">
-                        <p className="card-text">Aliado 5</p>
-                    </div>
-                </div>
-                <div className="card col cardCustom" style={{ width: '18rem' }}>
-                    <img src={icono} className={clasImg} alt="..." />
-                    <div className="card-body">
-                        <p className="card-text">Aliado 6</p>
-                    </div>
-                </div>
-                <div className="card col cardCustom" style={{ width: '18rem' }}>
-                    <img src={icono} className={clasImg} alt="..." />
-                    <div className="card-body">
-                        <p className="card-text">Aliado 7</p>
-                    </div>
-                </div>
-                <div className="card col cardCustom" style={{ width: '18rem' }}>
-                    <img src={icono} className={clasImg} alt="..." />
-                    <div className="card-body">
-                        <p className="card-text">Aliado 8</p>
-                    </div>
-                </div>
+                ))}
             </div>
         </div>
     );

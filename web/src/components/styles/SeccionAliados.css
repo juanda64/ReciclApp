@@ -1,4 +1,33 @@
-.img-fluid{
-    max-width: 70% !important;
-    
-}
+.container {
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Crear un máximo de 4 columnas por fila */
+    gap: 20px; /* Espacio entre las tarjetas */
+  }
+  
+  .cardCustom {
+    border: none !important;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+  }
+  
+  .cardCustom img {
+    height: 150px; /* Mantén la altura que tenías definida */
+    width: auto;
+    object-fit: scale-down; /* Las imágenes se ajustan sin recortar */
+  }
+  
+  .card-body {
+    text-align: center;
+    margin-top: 10px;
+  }
+  

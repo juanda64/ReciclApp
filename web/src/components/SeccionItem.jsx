@@ -1,7 +1,5 @@
 import React from "react";
 import img1 from './img/IMG1.png';
-import img2 from './img/IMG2.jpg';
-import img3 from './img/IMG3.jpg';
 import './styles/SeccionItem.css';
 
 const imgClass = "d-block w-100 img-fluid imgCarousel";
@@ -15,16 +13,8 @@ function Seccion() {
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
       </div>
       <div className="carousel-inner">
-        <div className="carousel-item active">
-          <div class="card bg-dark text-white">
-            <img src={img1} className={imgClass} class="card-img" alt="Slide 1" />
-            <div class="card-img-overlay">
-              <h5 class="card-title">Card title</h5>
-              <p class ="card-text">Descarga nuestra app</p>
-              <p class="card-text">img 1</p>
-            </div>
-          </div>
-
+        <div className="carousel-item active"> {/* Aquí se asegura que el primer slide sea activo */}
+          <img src={img1} className={imgClass} alt="Slide 1" />
         </div>
         <div className="carousel-item">
           <img src={img1} className={imgClass} alt="Slide 2" />
@@ -46,3 +36,4 @@ function Seccion() {
 }
 
 export default Seccion;
+

@@ -16,24 +16,13 @@ h2 {
 }
 
 .seccion {
-  padding: 100px;
-  height: 100vh;
+  padding: 100px 20px;
+  min-height: 100vh;
   /* Cada sección ocupará la altura completa de la ventana */
 }
 
-#inicio {
-  background-color: rgb(255, 255, 255);
-}
-
-#aliados {
-  background-color: rgb(255, 255, 255);
-}
-
-#nosotros {
-  background-color: rgb(255, 255, 255);
-}
-
-#app {
+/* Para las diferentes secciones */
+#inicio, #aliados, #nosotros, #app, #flutter {
   background-color: rgb(255, 255, 255);
 }
 
@@ -43,5 +32,41 @@ h2 {
 
 html {
   scroll-behavior: smooth;
-  /* Desplazamiento suave */
+}
+
+/* Ajustes específicos para la sección de aliados */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  justify-items: center;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.cardCustom {
+  border: none;
+  box-shadow: none;
+  text-align: center;
+}
+
+.cardCustom img {
+  max-height: 150px;
+  width: auto;
+  object-fit: scale-down;
+}
+
+/* Ajustes responsive adicionales */
+@media (max-width: 768px) {
+  .seccion {
+    padding: 50px 10px;
+  }
+
+  h2 {
+    font-size: 40px !important;
+  }
+
+  .cardCustom img {
+    max-height: 120px;
+  }
 }
