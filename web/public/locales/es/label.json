@@ -1,16 +1,24 @@
 {
-    "nav": {
-      "inicio": "Inicio",
-      "aliados": "Aliados",
-      "sobre_nosotros": "Sobre Nosotros",
-      "nuestra_app": "Nuestra App",
-      "iniciar_sesion": "Iniciar Sesión",
-      "registrarse": "Registrarse"
-    },
-    
-    "footer":{
-        "title": "Titulo",
-        "description": "Descripción"
-    }
+  "nav": {
+    "inicio": "Inicio",
+    "aliados": "Aliados",
+    "sobre_nosotros": "Sobre Nosotros",
+    "nuestra_app": "Nuestra App",
+    "iniciar_sesion": "Iniciar Sesión",
+    "registrarse": "Registrarse"
+  },
+  "login": {
+    "title": "Iniciar Sesión",
+    "username_label": "Usuario",
+    "username_placeholder": "Ingrese su usuario",
+    "password_label": "Contraseña",
+    "password_placeholder": "Ingrese su contraseña",
+    "submit_button": "Iniciar Sesión",
+    "forgot_password": "¿Olvidaste tu contraseña?",
+    "error_message": "Usuario o contraseña incorrectos"
+  },
+  "footer": {
+    "title": "Footer",
+    "description": "Descripción del footer"
   }
-  
+}

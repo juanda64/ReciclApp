@@ -1,17 +1,24 @@
 {
-    "nav": {
-      "inicio": "Home",
-      "aliados": "Partners",
-      "sobre_nosotros": "About Us",
-      "nuestra_app": "Our App",
-      "iniciar_sesion": "Login",
-      "registrarse": "Register"
-    },
-
-    "footer":{
-        "title": "Title",
-        "description": "Description"
-    }
-
+  "nav": {
+    "inicio": "Home",
+    "aliados": "Partners",
+    "sobre_nosotros": "About Us",
+    "nuestra_app": "Our App",
+    "iniciar_sesion": "Login",
+    "registrarse": "Sign Up"
+  },
+  "login": {
+    "title": "Login",
+    "username_label": "Username",
+    "username_placeholder": "Enter your username",
+    "password_label": "Password",
+    "password_placeholder": "Enter your password",
+    "submit_button": "Login",
+    "forgot_password": "Forgot your password?",
+    "error_message": "Incorrect username or password"
+  },
+  "footer": {
+    "title": "Footer",
+    "description": "Footer description"
   }
-  
+}

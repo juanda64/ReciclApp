@@ -9,21 +9,32 @@ import Login from "./Login";
 import { useTranslation } from "react-i18next"; // Importar el hook
 
 function Home() {
-  const { t } = useTranslation(); // Obtener la función de traducción
+  const { t, i18n} = useTranslation(); // Obtener la función de traducción
   const [activeItem, setActiveItem] = useState('');
   const [isLoginVisible, setIsLoginVisible] = useState(false);
 
+  // Manejar la visibilidad del formulario de inicio de sesión
+  const handleLogin = () => {
+    setIsLoginVisible(true);
+  };
+   // Función para cambiar de idioma
+   const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+
   // Lista de items traducidos
   const items = [
-    { item: t('nav.inicio'), target: '#inicio' },
-    { item: t('nav.aliados'), target: '#aliados' },
-    { item: t('nav.sobre_nosotros'), target: '#nosotros' },
-    { item: t('nav.nuestra_app'), target: '#app' },
+    { item: 'nav.inicio', target: '#inicio' },
+    { item: 'nav.aliados', target: '#aliados' },
+    { item: 'nav.sobre_nosotros', target: '#nosotros' },
+    { item: 'nav.nuestra_app', target: '#app' },
   ];
 
   const itemsEnd = [
-    { item: t('nav.iniciar_sesion'), target: '', onClick: 'handleLogin' },
-    { item: t('nav.registrarse'), target: '' }
+    { item: t("nav.iniciar_sesion"), target: '', onClick: handleLogin },
+    { item: t("nav.registrarse"), target: '' },
+    { item: 'ES', onClick: () => changeLanguage('es') },
+    { item: 'EN', onClick: () => changeLanguage('en') },
   ];
 
   const aliadosList = [
@@ -49,17 +60,13 @@ function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [items]);
 
-  const handleLogin = () => {
-    setIsLoginVisible(true);
-  };
-
   return (
     <>
       <nav id="nav" className='backg sticky-nav'>
-        <Nav listaNav={items} listEnd={itemsEnd.map((item) => ({ ...item, onClick: item.item === t('nav.iniciar_sesion') ? handleLogin : undefined }))} activeItem={activeItem} />
+        <Nav listaNav={items.map(item => ({ item: t(item.item), target: item.target }))} listEnd={itemsEnd.map(item => ({ item: t(item.item), onClick: item.onClick }))} activeItem={activeItem} />
       </nav>
 
-      <body className="body">
+      <div className="body">
         {isLoginVisible ? (
           <div id="login" className="seccion">
             <Login />
@@ -84,7 +91,7 @@ function Home() {
             </div>
           </>
         )}
-      </body>
+      </div>
     </>
   );
 }
