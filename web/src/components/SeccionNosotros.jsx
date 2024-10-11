@@ -1,5 +1,7 @@
 import React from "react";
 import './styles/SeccionNosotros.css'; // Asegúrate de crear este archivo CSS si deseas personalizar el estilo.
+import imgMision from'./img/IMG-MISION.jpg';
+import imgVision from'./img/IMG-VISION.jpg';
 
 function SeccionNosotros() {
   return (
@@ -7,6 +9,7 @@ function SeccionNosotros() {
       <h2 className="display-4 text-center">Sobre Nosotros</h2>
       <div className="row">
         <div className="col-md-6">
+          <img src={imgMision} className="imgNosostros"  />
           <h3>Misión</h3>
           <p>
             Nuestra misión es proporcionar soluciones sostenibles que contribuyan a un
@@ -16,6 +19,7 @@ function SeccionNosotros() {
           </p>
         </div>
         <div className="col-md-6">
+        <img src={imgVision} className="imgNosostros"  />
           <h3>Visión</h3>
           <p>
             Nuestra visión es ser líderes en la transformación de la gestión de

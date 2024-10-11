@@ -1,0 +1,30 @@
+.imgIconcustom{
+    width:120px;
+    height: auto;
+   
+}
+
+.btn-link {
+    background-color: #388E3C;
+    margin-top: 10px;
+    color: white !important; /* Cambia el color del texto a blanco */
+    border-radius: 10px;
+    transition: background-color 0.3s ease; /* Añadir una transición suave */
+    text-decoration: none; /* Elimina el subrayado */
+}
+
+.btn-link.active {
+    margin-top: 10px;
+    background-color: #246527; /* Fondo verde cuando el enlace está activo */
+    border-radius: 10px;
+    color: white; /* Asegúrate de que el texto siga siendo blanco */
+    text-decoration: none; /* Elimina el subrayado */
+}
+
+.btn-link:hover {
+    margin-top: 10px;
+    background-color: #388e3c; /* Fondo verde al pasar el mouse */
+    border-radius: 10px;
+    color: white; /* Asegúrate de que el texto siga siendo blanco */
+    text-decoration: none; /* Elimina el subrayado */
+}

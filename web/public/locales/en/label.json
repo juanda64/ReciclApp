@@ -1,3 +1,17 @@
 {
-    "login": "Iniciar sesión"
-}
+    "nav": {
+      "inicio": "Home",
+      "aliados": "Partners",
+      "sobre_nosotros": "About Us",
+      "nuestra_app": "Our App",
+      "iniciar_sesion": "Login",
+      "registrarse": "Register"
+    },
+
+    "footer":{
+        "title": "Title",
+        "description": "Description"
+    }
+
+  }
+  

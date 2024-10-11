@@ -16,11 +16,13 @@ h2 {
 }
 
 .seccion {
-  padding: 100px 20px;
-  min-height: 100vh;
+  padding: 20px;
+  min-height: auto;
   /* Cada sección ocupará la altura completa de la ventana */
 }
-
+.body{
+ padding-top: 50px;
+}
 /* Para las diferentes secciones */
 #inicio, #aliados, #nosotros, #app, #flutter {
   background-color: rgb(255, 255, 255);

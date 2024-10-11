@@ -1,0 +1,21 @@
+.imgcelfor {
+    height: 100%;
+    /* Mantén la altura fija o ajusta según lo que necesites */
+    width: 100%;
+    /* Ocupa el 100% del ancho disponible */
+    object-fit: cover;
+    /*Mantén la proporción de la imagen */
+    border-radius: 2%;
+    
+  
+  }
+.qr{
+    height: 70%;
+    width: auto;
+}
+.row{
+    padding: 20px;
+}
+.col-md-4{
+    align-content: center;
+}

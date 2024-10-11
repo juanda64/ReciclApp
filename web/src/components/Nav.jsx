@@ -8,7 +8,7 @@ function Nav({ listaNav, listEnd, activeItem }) {
             <img src={icono} className="rounded float-start imgcustom" alt="Icono" />
             <ul className="nav justify-content-start">
                 {listaNav.map((item, indice) => (
-                    <li key={indice} className="nav-item">                    
+                    <li key={indice} className="nav-item">
                         <a
                             className={`nav-link ${activeItem === item.target.substring(1) ? 'active' : ''}`}
                             aria-current="page"
@@ -21,10 +21,18 @@ function Nav({ listaNav, listEnd, activeItem }) {
             </ul>
             <ul className="nav justify-content-end">
                 {listEnd.map((item, indice) => (
-                    <li key={indice} className="nav-item itemEnd">                    
-                        <a className="nav-link" aria-current="page" href={item.target}>
-                            {item.item}
-                        </a>
+                    <li key={indice} className="nav-item itemEnd">
+                        {item.onClick ? (
+                            // Si el ítem tiene un onClick, usamos un botón
+                            <button className="nav-link btn" onClick={item.onClick}>
+                                {item.item}
+                            </button>
+                        ) : (
+                            // Si no tiene onClick, seguimos usando el enlace
+                            <a className="nav-link" aria-current="page" href={item.target}>
+                                {item.item}
+                            </a>
+                        )}
                     </li>
                 ))}
             </ul>
