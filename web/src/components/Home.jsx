@@ -33,9 +33,12 @@ function Home() {
   const itemsEnd = [
     { item: t("nav.iniciar_sesion"), target: '', onClick: handleLogin },
     { item: t("nav.registrarse"), target: '' },
+   
+  ];
+  const idiom = [
     { item: 'ES', onClick: () => changeLanguage('es') },
     { item: 'EN', onClick: () => changeLanguage('en') },
-  ];
+  ]
 
   const aliadosList = [
     { aliado: 'https://lavanderiasuavite.com/empresa-reciclaje-en-bogota-colombia/images/Logo-Arbol-Verde.png' },
@@ -63,7 +66,7 @@ function Home() {
   return (
     <>
       <nav id="nav" className='backg sticky-nav'>
-        <Nav listaNav={items.map(item => ({ item: t(item.item), target: item.target }))} listEnd={itemsEnd.map(item => ({ item: t(item.item), onClick: item.onClick }))} activeItem={activeItem} />
+        <Nav listaNav={items.map(item => ({ item: t(item.item), target: item.target }))} listEnd={itemsEnd.map(item => ({ item: t(item.item), onClick: item.onClick }))} idiom={idiom.map(item => ({ item: t(item.item), onClick: item.onClick }))} activeItem={activeItem} />
       </nav>
 
       <div className="body">

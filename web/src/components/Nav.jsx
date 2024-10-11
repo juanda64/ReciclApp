@@ -2,7 +2,7 @@ import React from "react";
 import './styles/Nav.css';
 import icono from './img/iconoRe.png';
 
-function Nav({ listaNav, listEnd, activeItem }) {
+function Nav({ listaNav, listEnd, idiom, activeItem }) {
     return (
         <nav className="nav-container">
             <img src={icono} className="rounded float-start imgcustom" alt="Icono" />
@@ -35,9 +35,29 @@ function Nav({ listaNav, listEnd, activeItem }) {
                         )}
                     </li>
                 ))}
+                {/* Select para cambiar de idioma */}
+                <li className="nav-item itemEnd">
+                    <select 
+                        className="nav-link select-idiom" 
+                        onChange={(e) => {
+                            const selectedLang = e.target.value;
+                            const selectedOption = idiom.find(item => item.item === selectedLang);
+                            if (selectedOption) {
+                                selectedOption.onClick(); // Llamar a la función onClick asociada
+                            }
+                        }}
+                    >
+                        {idiom.map((item, indice) => (
+                            <option key={indice} value={item.item}>
+                                {item.item}
+                            </option>
+                        ))}
+                    </select>
+                </li>
             </ul>
         </nav>
     );
 }
 
 export default Nav;
+
