@@ -5,7 +5,9 @@
     "sobre_nosotros": "Sobre Nosotros",
     "nuestra_app": "Nuestra App",
     "iniciar_sesion": "Iniciar Sesión",
-    "registrarse": "Registrarse"
+    "registrarse": "Registrarse",
+    "cerrar_sesion": "Cerrar Sesión",
+    "lista_usuarios": "lista de usuarios"
   },
   "login": {
     "title": "Iniciar Sesión",

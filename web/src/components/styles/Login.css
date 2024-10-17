@@ -5,17 +5,17 @@
 }
 
 .btn-link {
-    background-color: #388E3C;
-    margin-top: 10px;
+    background-color: #42a547 !important;
+    margin-top: 10px !important;
     color: white !important; /* Cambia el color del texto a blanco */
-    border-radius: 10px;
+    border-radius: 10px  !important;
     transition: background-color 0.3s ease; /* Añadir una transición suave */
-    text-decoration: none; /* Elimina el subrayado */
+    text-decoration: none !important; /* Elimina el subrayado */
 }
 
 .btn-link.active {
-    margin-top: 10px;
-    background-color: #246527; /* Fondo verde cuando el enlace está activo */
+    margin-top: 10px !important;
+    background-color: #246527 !important; /* Fondo verde cuando el enlace está activo */
     border-radius: 10px;
     color: white; /* Asegúrate de que el texto siga siendo blanco */
     text-decoration: none; /* Elimina el subrayado */
@@ -23,7 +23,7 @@
 
 .btn-link:hover {
     margin-top: 10px;
-    background-color: #388e3c; /* Fondo verde al pasar el mouse */
+    background-color: #388e3c !important; /* Fondo verde al pasar el mouse */
     border-radius: 10px;
     color: white; /* Asegúrate de que el texto siga siendo blanco */
     text-decoration: none; /* Elimina el subrayado */

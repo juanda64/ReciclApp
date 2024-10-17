@@ -5,7 +5,9 @@
     "sobre_nosotros": "About Us",
     "nuestra_app": "Our App",
     "iniciar_sesion": "Login",
-    "registrarse": "Sign Up"
+    "registrarse": "Sign Up",
+    "cerrar_sesion": "Logout",
+    "lista_usuarios": "Users list"
   },
   "login": {
     "title": "Login",

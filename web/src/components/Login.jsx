@@ -82,9 +82,9 @@ const Login = () => {
                                 <div className="d-flex justify-content-center">
                                     <button type="submit" className="btn btn-primary btn-link">{t('login.submit_button')}</button>
                                 </div>
-                                <div className="text-center mt-2">
+                               {/*  <div className="text-center mt-2">
                                     <a href="#">{t('login.forgot_password')}</a>
-                                </div>
+                                </div> */}
                             </form>
                         </div>
                     </div>
