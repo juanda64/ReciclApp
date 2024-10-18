@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
-import admittedUser from './authUser';
 import './styles/Login.css';
 import imgLogo from './img/iconoRe.png'; // Logo pequeño para el texto
 import sideImage from './img/IMG-MISION.jpg'; // Imagen que se mostrará a la izquierda
@@ -11,6 +10,7 @@ const Login = () => {
     const { t } = useTranslation(); // Obtener la función de traducción
     const [credentials, setCredentials] = useState({ email: '', password: '' });
     const [loginError, setLoginError] = useState('');
+    const [loading, setLoading] = useState(false);  // Para manejar el estado de carga
     const navigate = useNavigate();
 
     const handleInputChange = (e) => {
@@ -18,14 +18,39 @@ const Login = () => {
         setCredentials((prev) => ({ ...prev, [id]: value }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const { email, password } = credentials;
 
-        if (email === admittedUser.username && password === admittedUser.password) {
-            navigate('/admin');
-        } else {
+        try {
+            setLoading(true);  // Activamos el estado de carga
+
+            // Llamada a la API de login
+            const response = await fetch('https://apipyton.onrender.com/auth-basic/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',  // Cambiado a JSON
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password,
+                }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                console.log('Autenticación exitosa:', data);
+                navigate('/admin');
+            } else {
+                console.error('Error de autenticación:', data);
+                setLoginError(data.message || t('login.error_message'));
+            }
+        } catch (error) {
+            console.error('Error al autenticar:', error);
             setLoginError(t('login.error_message'));
+        } finally {
+            setLoading(false);  // Desactivamos el estado de carga
         }
     };
 
@@ -78,13 +103,15 @@ const Login = () => {
                                 <div className={`text-danger ${loginError ? '' : 'd-none'}`}>
                                     {loginError}
                                 </div>
+                                {/* Muestra un mensaje de carga si se está procesando */}
+                                {loading && <div className="text-center text-primary">Cargando...</div>}
+                                
                                 {/* Centrar el botón con d-flex y justify-content-center */}
                                 <div className="d-flex justify-content-center">
-                                    <button type="submit" className="btn btn-primary btn-link">{t('login.submit_button')}</button>
+                                    <button type="submit" className="btn btn-primary btn-link" disabled={loading}>
+                                        {t('login.submit_button')}
+                                    </button>
                                 </div>
-                               {/*  <div className="text-center mt-2">
-                                    <a href="#">{t('login.forgot_password')}</a>
-                                </div> */}
                             </form>
                         </div>
                     </div>
