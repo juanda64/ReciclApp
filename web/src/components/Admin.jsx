@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import Nav from "./Nav";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from 'react-router-dom'; // Importar useNavigate para redirigir
 
 const Admin = () => {
     const { t, i18n } = useTranslation(); // Traducción
     const [usuarios, setUsuarios] = useState([]);  // Estado para guardar los usuarios
     const [loading, setLoading] = useState(true);  // Estado para manejar el loading
+    const navigate = useNavigate(); // Hook para navegar entre rutas
 
     // Lista de navegación sin "Iniciar sesión" ni "Registrarse"
     const items = [
-        { item: 'nav.inicio', target: '#inicio' },
+        { item: 'nav.inicio', target: '/', onClick: () => navigate('/') }, // Redirigir a Home
         { item: 'nav.lista_usuarios', target: '#lista_usuarios' }      
     ];
 
@@ -49,7 +51,7 @@ const Admin = () => {
         <>
             <nav id="nav" className='backg sticky-nav'>
                 <Nav 
-                    listaNav={items.map(item => ({ item: t(item.item), target: item.target }))}
+                    listaNav={items.map(item => ({ item: t(item.item), target: item.target, onClick: item.onClick }))}
                     listEnd={itemsEnd.map(item => ({ item: item.item, onClick: item.onClick }))}
                     idiom={idiom.map(item => ({ item: item.item, onClick: item.onClick }))}
                 />
@@ -95,3 +97,4 @@ const Admin = () => {
 };
 
 export default Admin;
+
