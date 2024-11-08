@@ -1,0 +1,134 @@
+/* Admin.css */
+
+.admin-container {
+    display: flex;
+}
+
+.sidebar {
+    width: 200px;
+    background-color: #f8f9fa;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    transition: width 0.3s;
+}
+
+.collapsed .sidebar {
+    width: 60px;
+}
+
+.menu-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.menu-list {
+    list-style: none;
+    padding: 0;
+}
+
+.menu-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #333;
+    position: relative; /* Add relative position for Config menu */
+}
+
+.menu-list li:hover {
+    color: #007bff;
+}
+
+.bottom-menu {
+    margin-top: auto;
+}
+
+.collapsed .menu-title {
+    display: none;
+}
+
+.collapsed .menu-list li span {
+    display: none;
+}
+
+.toggle-btn {
+    background: none;
+    border: none;
+    color: #333;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.main-content {
+    margin-left: 220px;
+    padding: 20px;
+    width: 100%;
+    transition: margin-left 0.3s;
+}
+
+.collapsed .main-content {
+    margin-left: 80px;
+}
+
+.config-popup {
+    position: absolute;
+    top: 0;
+    left: 220px; /* Adjust based on sidebar width */
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 4px;
+    z-index: 100; /* Ensure it’s above other elements */
+    display: none; /* Hidden by default */
+}
+
+.menu-list .menu-item:hover .config-popup {
+    display: block; /* Show popup on hover */
+}
+
+.config-popup ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.config-popup li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 0;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.config-popup li:hover {
+    color: #007bff;
+}
+
+/* Icon size adjustment */
+.menu-list li svg,
+.config-popup li svg {
+    font-size: 1.5em;
+}
+
+.config-items {
+    list-style-type: none;
+    padding-left: 20px;
+    margin-top: 5px;
+}
+
+.config-items li {
+    padding: 5px 0;
+    cursor: pointer;
+}
