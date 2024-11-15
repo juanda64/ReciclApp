@@ -1,23 +1,40 @@
-.imgcustom{
-    width:60px;
+/* Estilos generales para quitar márgenes y rellenos en el body y html */
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos para la imagen del logo */
+.imgcustom {
+    width: 60px;
     height: 60px;
     padding: 2px;
     filter: brightness(0) invert(1);
 }
 
-
+/* Contenedor de la barra de navegación */
 .nav-container {
     display: flex;
     justify-content: space-between;
-    width: 100%;
+    width: 100vw; /* Ocupar todo el ancho de la ventana */
+    margin: 0;
+    padding: 0;
+    background-color: #388E3C; /* Fondo verde del nav */
+    position: fixed; /* Fijar en la parte superior */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Asegura que esté encima de otros elementos */
 }
 
+/* Estilos para la lista de navegación */
 .nav {
     display: flex;
     list-style: none;
     align-content: center;
 }
 
+/* Justificación de elementos */
 .justify-content-start {
     justify-content: flex-start;
 }
@@ -26,25 +43,29 @@
     justify-content: flex-end;
 }
 
+/* Estilos para los elementos de la lista */
 .nav-item {
-    margin: 5px;
+    margin: 0; /* Asegúrate de que no haya márgenes adicionales */
 }
 
+/* Estilos para los enlaces de navegación */
 .nav-link {
-    color: white !important; /* Cambia el color del texto a blanco */
+    color: white !important; /* Color del texto */
     border-radius: 10px;
-    transition: background-color 0.3s ease; /* Añadir una transición suave */
+    padding: 10px 15px; /* Espaciado interno de los enlaces */
+    transition: background-color 0.3s ease; /* Transición suave */
 }
 
+/* Estilos para el enlace activo */
 .nav-link.active {
     background-color: #388E3C; /* Fondo verde cuando el enlace está activo */
     border-radius: 10px;
-    color: white; /* Asegúrate de que el texto siga siendo blanco */
+    color: white;
 }
 
-/* Cambiar el fondo al pasar el mouse sobre el enlace */
+/* Efecto al pasar el mouse sobre el enlace */
 .nav-link:hover {
-    background-color: #388e3c71; /* Fondo verde al pasar el mouse */
+    background-color: #388e3c71; /* Fondo verde claro al pasar el mouse */
     border-radius: 10px;
-    color: white; /* Asegúrate de que el texto siga siendo blanco */
+    color: white;
 }

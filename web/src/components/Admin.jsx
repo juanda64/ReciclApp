@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FaTachometerAlt, FaCog, FaSignOutAlt, FaBars, FaUser, FaBox, FaUserFriends } from 'react-icons/fa';
+import { FaTachometerAlt, FaCog, FaSignOutAlt, FaBars, FaUser, FaBox, FaUserFriends, FaMapMarkerAlt } from 'react-icons/fa';
 import Nav from "./Nav";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from 'react-router-dom';
@@ -7,7 +7,7 @@ import './styles/Admin.css';
 
 const Admin = () => {
     const { t, i18n } = useTranslation();
-    const [usuarios, setUsuarios] = useState([]);
+    const [solicitudes, setSolicitudes] = useState([]);
     const [loading, setLoading] = useState(true);
     const [isCollapsed, setIsCollapsed] = useState(false);
     const [showConfigItems, setShowConfigItems] = useState(false);
@@ -24,23 +24,23 @@ const Admin = () => {
     ];
 
     useEffect(() => {
-        const fetchUsuarios = async () => {
+        const fetchSolicitudes = async () => {
             try {
-                const response = await fetch('https://apipyton.onrender.com/api/usuario/all');
+                const response = await fetch('https://apipyton.onrender.com/api/solicitudes/all');
                 const data = await response.json();
-                setUsuarios(data.body.data.usuarios);
+                setSolicitudes(data.body.data.solicitudes);
                 setLoading(false);
             } catch (error) {
-                console.error('Error al obtener los usuarios:', error);
+                console.error('Error al obtener las solicitudes:', error);
                 setLoading(false);
             }
         };
 
-        fetchUsuarios();
+        fetchSolicitudes();
     }, []);
 
     if (loading) {
-        return <div>Cargando usuarios...</div>;
+        return <div>Cargando solicitudes...</div>;
     }
 
     return (
@@ -63,7 +63,6 @@ const Admin = () => {
                         <FaCog size={22} />
                         {!isCollapsed && <span>Configuración</span>}
                     </li>
-                    {/* Lista de ítems de configuración justo debajo del botón de Configuración */}
                     {showConfigItems && (
                         <ul className="config-items" ref={configRef}>
                             <li onClick={() => console.log('Perfil')}>
@@ -86,7 +85,7 @@ const Admin = () => {
             <div className="main-content">
                 <nav id="nav" className='backg sticky-nav'>
                     <Nav
-                        listaNav={[{ item: t('nav.inicio'), target: '/', onClick: () => navigate('/') }]}
+                        listaNav={[{ item: t('admin.title'), target: '/admin', onClick: () => navigate('/admin') }]}
                         listEnd={[{ item: t("nav.cerrar_sesion"), onClick: () => console.log('Cerrar sesión') }]}
                         idiom={[
                             { item: 'ES', onClick: () => i18n.changeLanguage('es') },
@@ -94,37 +93,45 @@ const Admin = () => {
                         ]}
                     />
                 </nav>
-                <div id="lista_usuarios" className="container mt-5">
+                <div id="lista_solicitudes" className="container mt-5">
                     <h2 className="text-center">Panel de Administración</h2>
-                    <h4>Lista de Usuarios</h4>
+                    <h4>Lista de Solicitudes de Reciclaje</h4>
                     <table className="table table-striped">
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Nombre</th>
-                                <th>Apellido</th>
-                                <th>Edad</th>
-                                <th>Género</th>
-                                <th>Email</th>
-                                <th>Teléfono</th>
-                                <th>País</th>
-                                <th>Ciudad</th>
-                                <th>Ocupación</th>
+                                <th>ID Usuario</th>
+                                <th>Fecha Recolección</th>
+                                <th>Dirección</th>
+                                <th>Código QR</th>
+                                <th>Comentarios</th>
+                                <th>Status</th>
+                                <th>Centro</th>
+                                <th>Recolector</th>
+                                <th>Ubicación</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {usuarios.map((usuario) => (
-                                <tr key={usuario.id}>
-                                    <td>{usuario.id}</td>
-                                    <td>{usuario.nombres}</td>
-                                    <td>{usuario.apellidos}</td>
-                                    <td>{usuario.edad}</td>
-                                    <td>{usuario.genero}</td>
-                                    <td>{usuario.email}</td>
-                                    <td>{usuario.telefono}</td>
-                                    <td>{usuario.pais}</td>
-                                    <td>{usuario.ciudad}</td>
-                                    <td>{usuario.ocupacion}</td>
+                            {solicitudes.map((solicitud) => (
+                                <tr key={solicitud.id}>
+                                    <td>{solicitud.id}</td>
+                                    <td>{solicitud.id_usuario}</td>
+                                    <td>{new Date(solicitud.fecha_recoleccion).toLocaleString()}</td>
+                                    <td>{solicitud.direccion}</td>
+                                    <td>{solicitud.codigo_qr}</td>
+                                    <td>{solicitud.comentarios}</td>
+                                    <td>{solicitud.status}</td>
+                                    <td>{solicitud.id_centro}</td>
+                                    <td>{solicitud.id_recolector}</td>
+                                    <td>
+                                        <button
+                                            onClick={() => window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(solicitud.direccion)}`, '_blank')}
+                                            className="map-button"
+                                            title="Ver en Google Maps"
+                                        >
+                                            <FaMapMarkerAlt size={20} color="blue" />
+                                        </button>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>

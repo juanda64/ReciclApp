@@ -22,5 +22,9 @@
   "footer": {
     "title": "Footer",
     "description": "Descripción del footer"
+  },
+
+  "admin": {
+    "title": "Administrador"
   }
 }
