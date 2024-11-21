@@ -1,134 +1,172 @@
-/* Admin.css */
+/* Contenedor Principal */
 .admin-container {
     display: flex;
+    min-height: 100vh;
+    transition: margin-left 0.3s ease;
+}
+.admin-container.collapsed .main-content {
+    margin-left: 60px;
 }
 
+/* Barra Lateral */
 .sidebar {
-    margin-top: 64px;
     width: 200px;
-    background-color: #f8f9fa;
-    padding: 20px;
+    background-color: rgb(243, 243, 243); /* Verde oscuro */
+    color: #2e7d32;
+    padding: 15px;
     position: fixed;
-    top: 0;
+    top: 60px;
     left: 0;
-    height: 92vh;
+    height: calc(100vh - 60px); 
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s;
     display: flex;
     flex-direction: column;
-    transition: width 0.3s;
+    z-index: 1000; /* Asegura que esté sobre otros elementos */
+}
+
+.sidebar .menu-list {
+    list-style-type: none; /* Quita las viñetas */
+    padding-left: 0; /* Elimina el margen izquierdo de la lista */
+}
+
+.sidebar .menu-list li {
+    margin: 15px 0;
+}
+
+.sidebar .menu-list li:hover {
+    color: #c8e6c9; /* Verde más claro */
 }
 
 .collapsed .sidebar {
-    width: 60px;
-}
-
-.menu-title {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-}
-
-.menu-list {
-    list-style: none;
-    padding: 0;
-}
-
-.menu-list li {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin: 10px 0;
-    cursor: pointer;
-    font-size: 1rem;
-    color: #333;
-    position: relative; /* Add relative position for Config menu */
-}
-
-.menu-list li:hover {
-    color: #007bff;
-}
-
-.bottom-menu {
-    margin-top: auto;
-}
-
-.collapsed .menu-title {
-    display: none;
+    width: 70px;
 }
 
 .collapsed .menu-list li span {
     display: none;
 }
 
+/* Botón de Colapso */
 .toggle-btn {
-    background: none;
     border: none;
-    color: #333;
-    font-size: 1.5rem;
+    background: #388e3c; /* Verde más claro */
+    color: white;
     cursor: pointer;
-    margin-bottom: 20px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
+.toggle-btn:hover {
+    background: #66bb6a;
+}
+
+/* Contenido Principal */
 .main-content {
-    margin-left: 220px;
+    margin-left: 200px;
     padding: 20px;
-    width: 100%;
-    transition: margin-left 0.3s;
+    transition: margin-left 0.3s ease;
+    width: calc(100% - 200px);
 }
 
 .collapsed .main-content {
-    margin-left: 80px;
+    margin-left: 70px;
+    width: calc(100% - 70px);
 }
 
-.config-popup {
-    position: absolute;
-    top: 0;
-    left: 220px; /* Adjust based on sidebar width */
-    background-color: #f8f9fa;
-    border: 1px solid #ddd;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-    border-radius: 4px;
-    z-index: 100; /* Ensure it’s above other elements */
-    display: none; /* Hidden by default */
-}
-
-.menu-list .menu-item:hover .config-popup {
-    display: block; /* Show popup on hover */
-}
-
-.config-popup ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.config-popup li {
+/* Contenedor de estadísticas */
+.stats-container {
     display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 5px 0;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: #4caf50; /* Verde medio */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    color: white;
+    width: 200px;
+    min-width: 150px;
+    transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.collapsed .config-items li {
+    justify-content: center;
+    gap: 0;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+/* Tabla */
+.table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table thead {
+    background: #2e7d32; /* Verde oscuro */
+    color: white;
+    text-transform: uppercase;
+}
+
+.table thead th {
+    padding: 12px 15px;
+}
+
+.table tbody tr {
+    border-bottom: 1px solid #ddd;
+}
+
+.table tbody tr:hover {
+    background-color: #f1f8e9; /* Verde claro */
+}
+
+.table tbody td {
+    padding: 10px 15px;
+}
+
+/* Botón de Ubicación */
+.map-button {
+    border: none;
+    background: #66bb6a; /* Verde más claro */
+    color: white;
     cursor: pointer;
-    font-size: 0.9rem;
-    color: #333;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
-.config-popup li:hover {
-    color: #007bff;
+.map-button:hover {
+    background: #388e3c; /* Verde medio */
 }
 
-/* Icon size adjustment */
-.menu-list li svg,
-.config-popup li svg {
-    font-size: 1.5em;
-}
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .admin-container.collapsed .main-content {
+        margin-left: 60px;
+    }
 
-.config-items {
-    list-style-type: none;
-    padding-left: 20px;
-    margin-top: 5px;
-}
+    .stats-container {
+        flex-direction: column;
+        align-items: center;
+    }
 
-.config-items li {
-    padding: 5px 0;
-    cursor: pointer;
+    .stat-card {
+        width: 80%;
+        margin-bottom: 10px;
+    }
 }
