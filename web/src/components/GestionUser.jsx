@@ -12,7 +12,7 @@ const GestionUser = () => {
     // Lista de navegación sin "Iniciar sesión" ni "Registrarse"
     const items = [
         { item: 'nav.inicio', target: '/admin', onClick: () => navigate('/admin') }, // Redirigir a Home
-        { item: 'nav.lista_usuarios', target: '#lista_usuarios' }      
+        { item: 'nav.lista_usuarios', target: '#lista_usuarios' }
     ];
 
     // Añadimos solo "Cerrar sesión" como opción final
@@ -44,33 +44,33 @@ const GestionUser = () => {
     }, []);
 
     if (loading) {
-        return <div>Cargando usuarios...</div>;  // Muestra un mensaje mientras carga
+        return <div>{t("gestion_user.loading")}</div>;  // Muestra un mensaje mientras carga
     }
 
     return (
         <>
-            <nav id="nav" className='backg sticky-nav'>
+            <nav id="nav" className="backg sticky-nav">
                 <Nav 
                     listaNav={items.map(item => ({ item: t(item.item), target: item.target, onClick: item.onClick }))}
                     listEnd={itemsEnd.map(item => ({ item: item.item, onClick: item.onClick }))}
                     idiom={idiom.map(item => ({ item: item.item, onClick: item.onClick }))}
                 />
             </nav>
-            <div id ="lista_usuarios" className="container mt-5">
-                <h4>Lista de Usuarios</h4>
+            <div id="lista_usuarios" className="container mt-5">
+                <h4>{t("gestion_user.titulo")}</h4>
                 <table className="table table-striped">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Edad</th>
-                            <th>Género</th>
-                            <th>Email</th>
-                            <th>Teléfono</th>
-                            <th>País</th>
-                            <th>Ciudad</th>
-                            <th>Ocupación</th>
+                            <th>{t("gestion_user.tabla.id")}</th>
+                            <th>{t("gestion_user.tabla.nombre")}</th>
+                            <th>{t("gestion_user.tabla.apellido")}</th>
+                            <th>{t("gestion_user.tabla.edad")}</th>
+                            <th>{t("gestion_user.tabla.genero")}</th>
+                            <th>{t("gestion_user.tabla.email")}</th>
+                            <th>{t("gestion_user.tabla.telefono")}</th>
+                            <th>{t("gestion_user.tabla.pais")}</th>
+                            <th>{t("gestion_user.tabla.ciudad")}</th>
+                            <th>{t("gestion_user.tabla.ocupacion")}</th>
                         </tr>
                     </thead>
                     <tbody>

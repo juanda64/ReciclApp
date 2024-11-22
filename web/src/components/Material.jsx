@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { FaEdit, FaPlus, FaSave, FaChevronDown, FaChevronUp } from "react-icons/fa";
-import { useTranslation } from "react-i18next"; // Traducción
-import { useNavigate } from "react-router-dom"; // Navegación
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import './styles/Material.css';
 import Nav from "./Nav";
 
@@ -15,13 +15,12 @@ const MaterialList = () => {
     descripcion: "",
     foto: "",
   });
-  const [editingMaterial, setEditingMaterial] = useState(null);
   const [showAddForm, setShowAddForm] = useState(false);
   const navigate = useNavigate();
 
   const items = [
-    { item: "nav.inicio", target: "/admin", onClick: () => navigate("/admin") },
-    { item: "nav.lista_usuarios", target: "#lista_usuarios" }
+    { item: t("nav.inicio"), target: "/admin", onClick: () => navigate("/admin") },
+    { item: t("nav.lista_materiales"), target: "#lista_materiales" }
   ];
 
   const itemsEnd = [
@@ -38,25 +37,24 @@ const MaterialList = () => {
       try {
         const response = await fetch("https://apipyton.onrender.com/api/material/all");
         if (!response.ok) {
-          throw new Error("Error al obtener materiales");
+          throw new Error(t("materials.error", { error: response.statusText }));
         }
-
         const result = await response.json();
         const materialsData = result.body?.data?.Material;
 
         if (Array.isArray(materialsData)) {
           setMaterials(materialsData);
         } else {
-          throw new Error("Datos no disponibles o formato inesperado");
+          throw new Error(t("materials.error", { error: "Unexpected format" }));
         }
       } catch (err) {
         setError(err.message);
-        console.error("Error al obtener materiales:", err);
+        console.error("Error fetching materials:", err);
       }
     };
 
     fetchMaterials();
-  }, []);
+  }, [t]);
 
   const handleAddMaterial = async (e) => {
     e.preventDefault();
@@ -70,67 +68,18 @@ const MaterialList = () => {
       });
 
       if (!response.ok) {
-        throw new Error("Error al añadir el material");
+        throw new Error(t("materials.error", { error: "Failed to add material" }));
       }
 
       const result = await response.json();
-
       if (result.success) {
-        setMaterials((prevMaterials) => [...prevMaterials, result.data]);
-        setNewMaterial({
-          nombre_material: "",
-          unidad_medida: "",
-          descripcion: "",
-          foto: "",
-        });
+        setMaterials((prev) => [...prev, result.data]);
+        setNewMaterial({ nombre_material: "", unidad_medida: "", descripcion: "", foto: "" });
         setShowAddForm(false);
-      } else {
-        throw new Error(result.error || "Error desconocido");
       }
     } catch (err) {
       setError(err.message);
-      console.error("Error al añadir material:", err);
-    }
-  };
-
-  const handleEditMaterial = (material) => {
-    setEditingMaterial(material);
-  };
-
-  const handleUpdateMaterial = async (e) => {
-    e.preventDefault();
-
-    try {
-      const response = await fetch(
-        `https://apipyton.onrender.com/api/material/update/${editingMaterial._id}`, // Uso de _id
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(editingMaterial),
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error("Error al actualizar el material");
-      }
-
-      const result = await response.json();
-
-      if (result.success) {
-        setMaterials((prevMaterials) =>
-          prevMaterials.map((material) =>
-            material._id === editingMaterial._id ? editingMaterial : material
-          )
-        );
-        setEditingMaterial(null);
-      } else {
-        throw new Error(result.error || "Error desconocido");
-      }
-    } catch (err) {
-      setError(err.message);
-      console.error("Error al actualizar material:", err);
+      console.error("Error adding material:", err);
     }
   };
 
@@ -139,27 +88,22 @@ const MaterialList = () => {
       <nav id="nav" className="backg sticky-nav">
         <Nav
           listaNav={items.map((item) => ({ item: t(item.item), target: item.target, onClick: item.onClick }))}
-          listEnd={itemsEnd.map((item) => ({ item: item.item, onClick: item.onClick }))}
-          idiom={idiom.map((item) => ({ item: item.item, onClick: item.onClick }))}
+          listEnd={itemsEnd}
+          idiom={idiom}
         />
       </nav>
       <div className="container">
-        <h1 className="my-4 text-center">Gestión de Materiales</h1>
-        {error && <p className="text-danger">Error: {error}</p>}
-
-        <button
-          className="btn button mb-4 d-flex align-items-center"
-          onClick={() => setShowAddForm(!showAddForm)}
-        >
+        <h1 className="my-4 text-center">{t("materials.title")}</h1>
+        {error && <p className="text-danger">{t("materials.error", { error })}</p>}
+        <button className="btn button mb-4" onClick={() => setShowAddForm(!showAddForm)}>
           {showAddForm ? <FaChevronUp /> : <FaChevronDown />}
-          {showAddForm ? " Ocultar Formulario" : " Añadir Nuevo Material"}
+          {showAddForm ? ` ${t("materials.hide_form_button")}` : ` ${t("materials.add_button")}`}
         </button>
-
         {showAddForm && (
           <form onSubmit={handleAddMaterial} className="mb-4 p-4 border rounded bg-light">
-            <h3 className="mb-3">Añadir Nuevo Material</h3>
+            <h3 className="mb-3">{t("materials.form_title")}</h3>
             <div className="mb-3">
-              <label>Nombre del Material:</label>
+              <label>{t("materials.form_name_label")}</label>
               <input
                 type="text"
                 className="form-control"
@@ -168,28 +112,19 @@ const MaterialList = () => {
                 required
               />
             </div>
-            {/* Otros campos */}
           </form>
         )}
-
         <ul className="list-group">
           {materials.map((material) => (
-            <li
-              key={material._id} // Cambio a _id
-              className="list-group-item d-flex justify-content-between align-items-center"
-            >
+            <li key={material._id} className="list-group-item d-flex justify-content-between align-items-center">
               <div>
-                <h4>{material.nombre_material || "Nombre no disponible"}</h4>
-                <p>{material.descripcion || "Sin descripción"}</p>
+                <h4>{material.nombre_material || t("materials.no_description")}</h4>
+                <p>{material.descripcion || t("materials.no_description")}</p>
               </div>
-              {material.foto?.startsWith("http") ? ( // Validación de URL
-                <img
-                  src={material.foto}
-                  alt={material.nombre_material}
-                  style={{ width: "100px", borderRadius: "8px" }}
-                />
+              {material.foto?.startsWith("http") ? (
+                <img src={material.foto} alt={material.nombre_material} style={{ width: "100px" }} />
               ) : (
-                <p>Sin foto válida</p>
+                <p>{t("materials.no_photo")}</p>
               )}
             </li>
           ))}

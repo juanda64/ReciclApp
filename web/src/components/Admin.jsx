@@ -3,9 +3,7 @@ import { FaTachometerAlt, FaCog, FaSignOutAlt, FaBars, FaUser, FaBox, FaUserFrie
 import Nav from "./Nav";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from 'react-router-dom';
-import './styles/Admin.css'; 
-
-
+import './styles/Admin.css';
 
 const Admin = () => {
     const { t, i18n } = useTranslation();
@@ -14,7 +12,7 @@ const Admin = () => {
     const [loading, setLoading] = useState(true);
     const [isCollapsed, setIsCollapsed] = useState(false);
     const [showConfigItems, setShowConfigItems] = useState(false);
-    const navigate = useNavigate();  // Usamos useNavigate para redirigir a diferentes rutas
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -71,7 +69,7 @@ const Admin = () => {
                                 <FaUserFriends size={20} /> <span>Usuarios</span>
                             </li>
                             <li onClick={() => navigate('/admin/materiales')}>
-                                <FaBox size={20} /> <span>Materiales</span> {/* Ruta Materiales */}
+                                <FaBox size={20} /> <span>Materiales</span>
                             </li>
                         </ul>
                     )}
@@ -86,7 +84,10 @@ const Admin = () => {
                     <Nav
                         listaNav={[{ item: t('admin.title'), target: '/admin', onClick: () => navigate('/admin') }]}
                         listEnd={[{ item: t("nav.cerrar_sesion"), onClick: () => console.log('Cerrar sesión') }]}
-                        idiom={[{ item: 'ES', onClick: () => i18n.changeLanguage('es') }, { item: 'EN', onClick: () => i18n.changeLanguage('en') }]}
+                        idiom={[
+                            { item: 'ES', onClick: () => i18n.changeLanguage('es') },
+                            { item: 'EN', onClick: () => i18n.changeLanguage('en') }
+                        ]}
                     />
                 </nav>
                 <div id="lista_solicitudes" className="container mt-5">
@@ -131,7 +132,12 @@ const Admin = () => {
                                         <td>{solicitud.id_recolector}</td>
                                         <td>
                                             <button
-                                                onClick={() => window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(solicitud.direccion)}`, '_blank')}
+                                                onClick={() =>
+                                                    window.open(
+                                                        `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(solicitud.direccion)}`,
+                                                        '_blank'
+                                                    )
+                                                }
                                                 className="map-button"
                                                 title="Ver en Google Maps"
                                             >

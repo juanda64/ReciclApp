@@ -7,7 +7,8 @@
     "iniciar_sesion": "Login",
     "registrarse": "Sign Up",
     "cerrar_sesion": "Logout",
-    "lista_usuarios": "Users list"
+    "lista_materiales": "Materials List",
+    "lista_usuarios": "User List"
   },
   "login": {
     "title": "Login",
@@ -23,8 +24,50 @@
     "title": "Footer",
     "description": "Footer description"
   },
-  
   "admin": {
-    "title": "Manager"
+    "title": "Manager",
+    "stats": {
+      "users": "Users",
+      "requests": "Requests"
+    },
+    "table": {
+      "id": "ID",
+      "user_id": "User ID",
+      "date": "Pickup Date",
+      "address": "Address",
+      "qr_code": "QR Code",
+      "comments": "Comments",
+      "status": "Status",
+      "center": "Center",
+      "collector": "Collector",
+      "location": "Location"
+    },
+    "loading": "Loading data..."
+  },
+  "materials": {
+    "title": "Materials Management",
+    "error": "Error: {{error}}",
+    "add_button": "Add New Material",
+    "hide_form_button": "Hide Form",
+    "form_title": "Add New Material",
+    "form_name_label": "Material Name",
+    "no_description": "No description",
+    "no_photo": "No valid photo"
+  },
+  "gestion_user": {
+    "titulo": "User List",
+    "tabla": {
+      "id": "ID",
+      "nombre": "Name",
+      "apellido": "Last Name",
+      "edad": "Age",
+      "genero": "Gender",
+      "email": "Email",
+      "telefono": "Phone",
+      "pais": "Country",
+      "ciudad": "City",
+      "ocupacion": "Occupation"
+    },
+    "loading": "Loading users..."
   }
 }

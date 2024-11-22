@@ -6,8 +6,9 @@
     "nuestra_app": "Nuestra App",
     "iniciar_sesion": "Iniciar Sesión",
     "registrarse": "Registrarse",
-    "cerrar_sesion": "Cerrar Sesión",
-    "lista_usuarios": "lista de usuarios"
+    "cerrar_sesion": "Cerrar sesión",
+    "lista_materiales": "Lista de Materiales",
+    "lista_usuarios": "Lista de Usuarios"
   },
   "login": {
     "title": "Iniciar Sesión",
@@ -23,8 +24,50 @@
     "title": "Footer",
     "description": "Descripción del footer"
   },
-
   "admin": {
-    "title": "Administrador"
+    "title": "Administrador",
+    "stats": {
+      "users": "Usuarios",
+      "requests": "Solicitudes"
+    },
+    "table": {
+      "id": "ID",
+      "user_id": "ID Usuario",
+      "date": "Fecha de Recolección",
+      "address": "Dirección",
+      "qr_code": "Código QR",
+      "comments": "Comentarios",
+      "status": "Estado",
+      "center": "Centro",
+      "collector": "Recolector",
+      "location": "Ubicación"
+    },
+    "loading": "Cargando datos..."
+  },
+  "materials": {
+    "title": "Gestión de Materiales",
+    "error": "Error: {{error}}",
+    "add_button": "Añadir Nuevo Material",
+    "hide_form_button": "Ocultar Formulario",
+    "form_title": "Añadir Nuevo Material",
+    "form_name_label": "Nombre del Material",
+    "no_description": "Sin descripción",
+    "no_photo": "Sin foto válida"
+  },
+  "gestion_user": {
+    "titulo": "Lista de Usuarios",
+    "tabla": {
+      "id": "ID",
+      "nombre": "Nombre",
+      "apellido": "Apellido",
+      "edad": "Edad",
+      "genero": "Género",
+      "email": "Correo Electrónico",
+      "telefono": "Teléfono",
+      "pais": "País",
+      "ciudad": "Ciudad",
+      "ocupacion": "Ocupación"
+    },
+    "loading": "Cargando usuarios..."
   }
 }
