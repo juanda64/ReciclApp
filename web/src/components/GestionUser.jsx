@@ -11,7 +11,7 @@ const GestionUser = () => {
 
     // Lista de navegación sin "Iniciar sesión" ni "Registrarse"
     const items = [
-        { item: 'nav.inicio', target: '/', onClick: () => navigate('/') }, // Redirigir a Home
+        { item: 'nav.inicio', target: '/admin', onClick: () => navigate('/admin') }, // Redirigir a Home
         { item: 'nav.lista_usuarios', target: '#lista_usuarios' }      
     ];
 
